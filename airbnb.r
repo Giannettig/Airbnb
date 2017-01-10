@@ -8,7 +8,22 @@ library(tidyr)
 require(plotly)
 
 #Load the data
-rentals<-read.csv("Airbnb listings in Prague (March 2016).csv")[-1]
+rentals<-read.csv("Airbnb listings in Prague (March 2016).csv")[-1]%>%
+  mutate(priceCZK=price*25.942)%>%
+  mutate(pricePerPersonCZK=price/accommodates,
+         pricePerRoomCZK=price/bedrooms)
+
+#some basic histograms
+hist(rentals$price[rentals$price<200], breaks=100)
+hist(rentals$pricePerPerson[rentals$pricePerPerson<200], breaks=100)
+
+#get only relevant neighbouthoods
+filteredRentals<-rentals %>%
+  group_by(neighborhood,room_type)%>%
+  summarize(count=n(), AVGpricePerPersonCZK=mean(pricePerPersonCZK, na.rm=TRUE),AVGpriceCZK=mean(priceCZK, na.rm=TRUE), accommodates=mean(accommodates, na.rm=TRUE))%>%
+  filter(count>30)%>%
+  arrange(AVGpricePerPersonCZK)
+
 
 
 # Notched Boxplot of Rentals Against 2 Crossed Factors
