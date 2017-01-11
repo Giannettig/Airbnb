@@ -16,7 +16,7 @@ library(data.table)
 
 key<-"wuXUGczxCx1lvGxE23CdkR8lsAy4L0mU"
 
-##Get Dump of AirBnB data
+##Get Dump of AirBnB data - courtesy of http://tomslee.net/airbnb-data
 
 rentals<-read.csv("Airbnb listings in Prague (March 2016).csv")[-1]%>%
   mutate(priceCZK=price*25.942)%>%
