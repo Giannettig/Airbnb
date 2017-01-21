@@ -28,12 +28,19 @@ rentals<-read.csv("Airbnb listings in Prague (March 2016).csv")[-1]%>%
 #Load the required functions
 source("functions.R")
 
+<<<<<<< HEAD
 #enchancedRentals<-enhanceGeodata(rentals,key)
 
 #It takes a While so you can use a dump that I already made
 enchancedRentals<-read.csv("AirbnbAugmented.csv")
 SrealityPreviews<-read.csv("SrealityPreview.csv")
 
+=======
+#It takes a While so you can use a dump that I already made
+enchancedRentals<-read.csv("AirbnbAugmented.csv")
+##for a new run uncomment
+#enchancedRentals<-enhanceGeodata(rentals,key)
+>>>>>>> origin/master
 #==========================================================ANALYSIS================================================================#
 
 
